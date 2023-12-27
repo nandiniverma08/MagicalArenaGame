@@ -10,21 +10,22 @@ public class Player {
 	int health;
 	int strength;
 	int attack;
+	String name; 
 	private AttackInterface attackInterface;
 	private DefenseInterface defenseInterface;
 	
 	
 	
 	
-	public Player(int health, int strength, int attack, AttackInterface attackInterface,
-			DefenseInterface defenseInterface) {
-		super();
-		this.health = health;
-		this.strength = strength;
-		this.attack = attack;
-		this.attackInterface = attackInterface;
-		this.defenseInterface = defenseInterface;
-	}
+	public Player(int health, int strength, int attack, String name, AttackInterface attackInterface,
+            DefenseInterface defenseInterface) {
+        this.health = health;
+        this.strength = strength;
+        this.attack = attack;
+        this.name = name;  
+        this.attackInterface = attackInterface;
+        this.defenseInterface = defenseInterface;
+    }
 	
 	
 	public int getHealth() {
@@ -47,6 +48,18 @@ public class Player {
 	}
 	
 	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	public void reduceHealth(int damage) {
         health -= damage;
         if (health < 0) {
