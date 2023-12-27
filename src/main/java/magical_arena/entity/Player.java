@@ -47,9 +47,16 @@ public class Player {
 	}
 	
 	
+	public void reduceHealth(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
+    }
 
 	
 	public int rollDice() {
+       
         return new Random().nextInt(6) + 1;
     }
 	

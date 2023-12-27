@@ -42,7 +42,7 @@ public class MagicalArenaGame {
 		int damageDone = Math.max(0, damage - defense);
 		System.out.println("damageDone " + damageDone);
 
-		
+		defender.reduceHealth(damageDone);
 
 		System.out.println(
 				"Player A attacks, results " + damageDone + " damage. Player B health: " + defender.getHealth());
@@ -57,7 +57,8 @@ public class MagicalArenaGame {
 		int damageDone = Math.max(0, damage - defense);
 		System.out.println("damageDone " + damageDone);
 
-		
+		defender.reduceHealth(damageDone);
+
 		System.out.println(
 				"Player B attacks, results " + damageDone + " damage. Player A health: " + defender.getHealth());
 	}
