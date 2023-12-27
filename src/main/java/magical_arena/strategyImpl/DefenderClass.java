@@ -3,12 +3,13 @@ package magical_arena.strategyImpl;
 import magical_arena.entity.Player;
 import magical_arena.strategy.DefenseInterface;
 
-public class DefenderClass implements DefenseInterface{
+public class DefenderClass implements DefenseInterface {
 
 	@Override
 	public int damageDone(Player defender) {
-		// TODO Auto-generated method stub
-		return 0;
+		int totalDefense = defender.rollDice() * defender.getStrength();
+		System.out.println("Total defense: " + totalDefense);
+		return totalDefense;
 	}
 
 }

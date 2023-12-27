@@ -1,5 +1,7 @@
 package magical_arena.entity;
 
+import java.util.Random;
+
 import magical_arena.strategy.AttackInterface;
 import magical_arena.strategy.DefenseInterface;
 
@@ -43,6 +45,36 @@ public class Player {
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
+	
+	
+	public void reduceHealth(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
+    }
+
+	
+	public int rollDice() {
+        return new Random().nextInt(6) + 1;
+    }
+	
+	public int totalDamage() {
+	    return rollDice() * attackInterface.attackDone(this);
+	}
+
+
+    public int totalDefense() {
+        return defenseInterface.damageDone(this);
+    }
+
+    public void setAttack(AttackInterface attackInterface) {
+        this.attackInterface = attackInterface;
+    }
+
+    public void setDefense(DefenseInterface defenseInterface) {
+        this.defenseInterface = defenseInterface;
+    }
 	
 	
 	
