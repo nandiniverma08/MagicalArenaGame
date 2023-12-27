@@ -64,8 +64,8 @@ public class MagicalArenaGame {
 	}
 
 	public static void main(String[] args) {
-		Player playerA = new Player(50, 5, 10, new AttackerClass(), new DefenderClass());
-		Player playerB = new Player(100, 10, 5, new AttackerClass(), new DefenderClass());
+		Player playerA = new Player(80, 10, 40, new AttackerClass(), new DefenderClass());
+		Player playerB = new Player(45, 8, 90, new AttackerClass(), new DefenderClass());
 
 		MagicalArenaGame game = new MagicalArenaGame(playerA, playerB);
 
