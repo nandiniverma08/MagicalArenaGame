@@ -14,7 +14,7 @@ public class Player {
 	private AttackInterface attackInterface;
 	private DefenseInterface defenseInterface;
 	
-	
+	private int fixedDiceRoll;
 	
 	
 	public Player(int health, int strength, int attack, String name, AttackInterface attackInterface,
@@ -48,8 +48,6 @@ public class Player {
 	}
 	
 	
-	
-	
 	public String getName() {
 		return name;
 	}
@@ -67,9 +65,11 @@ public class Player {
         }
     }
 
-	
-	public int rollDice() {
-       
+    public int rollDice() {
+        if (fixedDiceRoll > 0) {
+            return fixedDiceRoll;
+        }
+
         return new Random().nextInt(6) + 1;
     }
 	
@@ -90,9 +90,11 @@ public class Player {
         this.defenseInterface = defenseInterface;
     }
 	
-	
-	
-	
+    
+    public void setFixedDiceRoll(int fixedDiceRoll) {
+        this.fixedDiceRoll = fixedDiceRoll;
+    }
+
 	
 
 }

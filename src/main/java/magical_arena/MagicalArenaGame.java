@@ -7,19 +7,21 @@ import magical_arena.strategyImpl.AttackerClass;
 import magical_arena.strategyImpl.DefenderClass;
 
 public class MagicalArenaGame {
-	private Player playerA;
+    private Player playerA;
     private Player playerB;
+    private Scanner scanner;
 
     public MagicalArenaGame(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+        this.scanner = new Scanner(System.in);
     }
 
     public void playGame() {
         Player firstAttacker;
         Player secondAttacker;
 
-        // Determine the player with lower health to attack first
+        
         if (playerA.getHealth() <= playerB.getHealth()) {
             firstAttacker = playerA;
             secondAttacker = playerB;
@@ -28,25 +30,38 @@ public class MagicalArenaGame {
             secondAttacker = playerA;
         }
 
+        System.out.println("Let the magical arena battle begin!");
+
         while (firstAttacker.getHealth() > 0 && secondAttacker.getHealth() > 0) {
             System.out.println("--------------------------------------------------");
             System.out.println("Player A (" + playerA.getName() + ") Health: " + playerA.getHealth()
                     + ", Player B (" + playerB.getName() + ") Health: " + playerB.getHealth());
 
-            // Attack by the player with lower health
+           
             if (firstAttacker == playerA) {
                 playerAAttack(playerB);
             } else {
                 playerBAttack(playerA);
             }
 
-            // Switch attacker and defender for the next turn
+           
             Player temp = firstAttacker;
             firstAttacker = secondAttacker;
             secondAttacker = temp;
+
+            
+            try {
+                Thread.sleep(3000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            
+            System.out.println("Press Enter for the next round...");
+            scanner.nextLine(); 
         }
 
-        // Determine the winner
+       
         if (playerA.getHealth() <= 0) {
             System.out.println(playerB.getName() + " wins!");
         } else {
@@ -54,7 +69,30 @@ public class MagicalArenaGame {
         }
     }
 
+    public void playGameWithFixedDiceRolls(int fixedDiceRollA, int fixedDiceRollB) {
+       
+        Scanner fixedRollScanner = new Scanner(System.in);
 
+        playerA.setFixedDiceRoll(fixedDiceRollA);
+        playerB.setFixedDiceRoll(fixedDiceRollB);
+        
+//        playerA.setHealth(100);
+//        playerB.setHealth(80);
+
+          playGame();
+
+        fixedRollScanner.close();
+    }
+
+
+    public String getWinner() {
+
+        if (playerA.getHealth() <= 0) {
+            return playerB.getName();
+        } else {
+            return playerA.getName();
+        }
+    }
 
     public void playerAAttack(Player defender) {
         System.out.println("Player A's turn:");
@@ -91,35 +129,39 @@ public class MagicalArenaGame {
 
         System.out.println("Let's begin the game!");
 
-        // Choose the player for Team A
+
         System.out.println("Enter the name for Team A:");
         String playerAName = scanner.nextLine();
 
-        // Enter the health, strength, and attack for Team A
+        
         System.out.println("Enter the health for Team A:");
         int playerAHealth = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
+        
         System.out.println("Enter the strength for Team A:");
         int playerAStrength = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
+        
         System.out.println("Enter the attack for Team A:");
         int playerAAttack = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
 
-        // Choose the player for Team B
+
         System.out.println("Enter the name for Team B:");
         String playerBName = scanner.nextLine();
 
-        // Enter the health, strength, and attack for Team B
+
         System.out.println("Enter the health for Team B:");
         int playerBHealth = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
+        
         System.out.println("Enter the strength for Team B:");
         int playerBStrength = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
+        
         System.out.println("Enter the attack for Team B:");
         int playerBAttack = scanner.nextInt();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
 
         Player playerA = new Player(playerAHealth, playerAStrength, playerAAttack, playerAName,
                 new AttackerClass(), new DefenderClass());
