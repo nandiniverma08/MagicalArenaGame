@@ -33,19 +33,28 @@ public class MagicalArenaGame {
             System.out.println("Player A (" + playerA.getName() + ") Health: " + playerA.getHealth()
                     + ", Player B (" + playerB.getName() + ") Health: " + playerB.getHealth());
 
-            playerAAttack(playerB);
-            if (playerB.getHealth() <= 0) {
-                System.out.println(playerA.getName() + " wins!");
-                break;
+            // Attack by the player with lower health
+            if (firstAttacker == playerA) {
+                playerAAttack(playerB);
+            } else {
+                playerBAttack(playerA);
             }
 
-            playerBAttack(playerA);
-            if (playerA.getHealth() <= 0) {
-                System.out.println(playerB.getName() + " wins!");
-                break;
-            }
+            // Switch attacker and defender for the next turn
+            Player temp = firstAttacker;
+            firstAttacker = secondAttacker;
+            secondAttacker = temp;
+        }
+
+        // Determine the winner
+        if (playerA.getHealth() <= 0) {
+            System.out.println(playerB.getName() + " wins!");
+        } else {
+            System.out.println(playerA.getName() + " wins!");
         }
     }
+
+
 
     public void playerAAttack(Player defender) {
         System.out.println("Player A's turn:");
