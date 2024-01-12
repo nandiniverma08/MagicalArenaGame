@@ -30,6 +30,7 @@ public class MagicalArenaGameTest
             assertEquals("PlayerA", game.getWinner());
         }
     }
+	
 
 	
 }

@@ -62,7 +62,9 @@ public class MagicalArenaGame {
         }
 
        
-        if (playerA.getHealth() <= 0) {
+        if (playerA.getHealth() <= 0 && playerB.getHealth() <= 0) {
+            System.out.println("The match is a draw!");
+        } else if (playerA.getHealth() <= 0) {
             System.out.println(playerB.getName() + " wins!");
         } else {
             System.out.println(playerA.getName() + " wins!");
@@ -86,13 +88,15 @@ public class MagicalArenaGame {
 
 
     public String getWinner() {
-
-        if (playerA.getHealth() <= 0) {
+        if (playerA.getHealth() <= 0 && playerB.getHealth() <= 0) {
+            return "Draw";
+        } else if (playerA.getHealth() <= 0) {
             return playerB.getName();
         } else {
             return playerA.getName();
         }
     }
+
 
     public void playerAAttack(Player defender) {
         System.out.println("Player A's turn:");
